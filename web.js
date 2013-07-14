@@ -4,11 +4,9 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  var fsIndex = fs.readFileSync("index.html", function(err, data) {
-    if(err) throw err;
-    response.writeHead(200);
-    response.send(data);
-  });
+  var fsIndex = fs.readFileSync("index.html", {encoding: "utf8"});
+  response.writeHead(200);
+  response.send(fsIndex);
 });
 
 var port = process.env.PORT || 5000;
